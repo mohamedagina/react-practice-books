@@ -11,7 +11,9 @@ const addBook = title =>
 
 const editBook = (id, newTitle) =>
   axios
-    .put(`${process.env.REACT_APP_API_BASE_URL}/books/${id}`, { newTitle })
+    .put(`${process.env.REACT_APP_API_BASE_URL}/books/${id}`, {
+      title: newTitle
+    })
     .then(res => res.data);
 
 const deleteBook = id =>

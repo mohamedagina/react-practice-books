@@ -26,11 +26,13 @@ function App() {
   };
 
   const deleteBookById = id => {
-    const updatedBooks = books.filter(book => {
-      return book.id !== id;
-    });
+    axios.delete(`http://localhost:3001/books/${id}`).then(() => {
+      const updatedBooks = books.filter(book => {
+        return book.id !== id;
+      });
 
-    setBooks(updatedBooks);
+      setBooks(updatedBooks);
+    });
   };
 
   const createBook = title => {

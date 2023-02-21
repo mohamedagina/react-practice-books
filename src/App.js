@@ -16,15 +16,13 @@ function App() {
   }, []);
 
   const editBookById = (id, newTitle) => {
-    const updatedBooks = books.map(book => {
-      if (book.id === id) {
-        return { ...book, title: newTitle };
-      }
-
-      return book;
-    });
-
-    setBooks(updatedBooks);
+    axios
+      .put(`http://localhost:3001/books/${id}`, { title: newTitle })
+      .then(({ data: newBook }) =>
+        setBooks(
+          books.map(book => (book.id === id ? { ...book, ...newBook } : book))
+        )
+      );
   };
 
   const deleteBookById = id => {
